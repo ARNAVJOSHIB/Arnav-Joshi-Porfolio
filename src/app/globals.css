@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --burgundy: #590d16;
+  --burgundy-dark: #460911;
+  --burgundy-card: #64181e;
+  --burgundy-light: #701a25;
+  --butter-yellow: #f3e59a;
+  --cream: #f7ebc1;
+  --off-white: #f8f3e6;
+  --muted-gold: #d8c57c;
+  --muted-burgundy: #7d3138;
+  --outer-mat: #b6a1a4;
+  --black: #1a1111;
+}
+
+@theme inline {
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-dark: var(--burgundy-dark);
+  --color-burgundy-card: var(--burgundy-card);
+  --color-burgundy-light: var(--burgundy-light);
+  --color-butter: var(--butter-yellow);
+  --color-cream: var(--cream);
+  --color-offwhite: var(--off-white);
+  --color-gold: var(--muted-gold);
+  --color-muted-burgundy: var(--muted-burgundy);
+  --color-mat: var(--outer-mat);
+  --color-ink: var(--black);
+  --font-display: var(--font-anton), "Anton", Impact, sans-serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--outer-mat);
+  color: var(--butter-yellow);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--butter-yellow);
+  color: var(--burgundy-dark);
+}
+
+/* Signature outlined numeral treatment matching the reference timeline & process blocks */
+.numeral-outline-light {
+  color: transparent;
+  -webkit-text-stroke: 1.25px rgba(243, 229, 154, 0.34);
+  transition: -webkit-text-stroke-color 300ms ease, opacity 300ms ease;
+}
+
+.group:hover .numeral-outline-light {
+  -webkit-text-stroke-color: rgba(243, 229, 154, 0.65);
+}
+
+.numeral-outline-dark {
+  color: rgba(248, 243, 230, 0.38);
+  -webkit-text-stroke: 1.35px rgba(89, 13, 22, 0.42);
+  transition: -webkit-text-stroke-color 300ms ease;
+}
+
+.group:hover .numeral-outline-dark {
+  -webkit-text-stroke-color: rgba(89, 13, 22, 0.72);
+}
+
+/* Subtle slow rotation for the hero editorial seal badge */
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-seal-spin {
+  animation: slow-spin 28s linear infinite;
+}
+
+/* Accessible marquee ticker in the bottom strip */
+@keyframes editorial-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-editorial-marquee {
+  animation: editorial-marquee 32s linear infinite;
+}
+
+.marquee-wrapper:hover .animate-editorial-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-seal-spin,
+  .animate-editorial-marquee {
+    animation: none;
+  }
+}
+
+/* Custom visible focus ring matching the burgundy & butter-yellow palette */
+:focus-visible {
+  outline: 2px solid var(--butter-yellow);
+  outline-offset: 3px;
+}
+
+.on-yellow :focus-visible {
+  outline-color: var(--burgundy);
+}
